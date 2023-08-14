@@ -6,6 +6,10 @@ class CaixaDaLanchonete {
 
     calcularValorDaCompra(metodoDePagamento, itens) {
 
+        if(itens.length === 0){
+            return console.log("Não há itens no carrinho de compra!");
+        }
+
         const pedido = cardapio.verificar_itens(itens)
         let ValorTotal = 0;
 
