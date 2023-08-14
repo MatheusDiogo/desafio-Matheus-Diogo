@@ -17,7 +17,10 @@ class CaixaDaLanchonete {
             const [nomeItem, quantidade] = item.split(',');
 
             let invalido = 1;
-            if (pedido[nomeItem]) {
+            if (quantidade === '0') {
+                console.log(nomeItem + ' : Quantidade inválida!');
+                invalido = 0;
+            }else if (pedido[nomeItem]) {
                 const valorItem = cardapio.itens[nomeItem].valor * quantidade;
                 console.log(nomeItem + ' (' + quantidade + 'x): R$ ' + valorItem.toFixed(2).replace('.', ','));
                 ValorTotal += valorItem;
