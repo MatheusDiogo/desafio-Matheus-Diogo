@@ -22,10 +22,15 @@ class CaixaDaLanchonete {
             } else {
                 for (const principal in cardapio.itens) {
                     if (cardapio.itens[principal].extras && cardapio.itens[principal].extras[item]) {
-                        console.log(item + ': R$ ' + cardapio.itens[principal].extras[item].valor.toFixed(2).replace('.', ','));
-                        ValorTotal += cardapio.itens[principal].extras[item].valor;
-                        invalido = 0;
-                        break;
+                        const principalNoPedido = pedido[principal];
+                        if (principalNoPedido) {
+                            console.log(item + ': R$ ' + cardapio.itens[principal].extras[item].valor.toFixed(2).replace('.', ','));
+                            ValorTotal += cardapio.itens[principal].extras[item].valor;
+                            invalido = 0;
+                            break;
+                        } else {
+                            console.log(item + ": Item extra não pode ser pedido sem o principal");
+                        }
                     }
                 }
             }
