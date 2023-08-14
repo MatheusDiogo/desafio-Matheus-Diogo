@@ -43,4 +43,13 @@ export class Cardapio {
     getItem(item) {
         return this.itens[item];
     }
+
+    verificar_itens(pedido) {
+        const resultados = {};
+        pedido.forEach(pedido => {
+            resultados[pedido] = this.itens.hasOwnProperty(pedido);
+        });
+        return resultados;
+    }
+
 }

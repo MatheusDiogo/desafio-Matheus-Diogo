@@ -1,3 +1,5 @@
 import {CaixaDaLanchonete} from "./src/caixa-da-lanchonete.js";
 
-new CaixaDaLanchonete().calcularValorDaCompra('debito', 'caf');
+const pedido = ['caf', 'café', 'suco'];
+
+new CaixaDaLanchonete().calcularValorDaCompra('debito', pedido);
