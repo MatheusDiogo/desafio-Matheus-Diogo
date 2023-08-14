@@ -47,9 +47,16 @@ class CaixaDaLanchonete {
                 console.log(nomeItem + ": Item inválido!");
             }
         });
-
-        return console.log('Total: R$ ' + ValorTotal.toFixed(2).replace('.',','));
-
+        
+        if(metodoDePagamento === 'dinheiro'){
+            ValorTotal -= ValorTotal*0.05;
+            return console.log('Total: R$ ' + ValorTotal.toFixed(2).replace('.',','));
+        }else if(metodoDePagamento === 'credito'){
+            ValorTotal += ValorTotal*0.03;
+            return console.log('Total: R$ ' + ValorTotal.toFixed(2).replace('.',','));
+        }else{
+            return console.log('Total: R$ ' + ValorTotal.toFixed(2).replace('.',','));
+        }
     }
 }
 
