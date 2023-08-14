@@ -12,13 +12,15 @@ class CaixaDaLanchonete {
 
         const pedido = cardapio.verificar_itens(itens.map(item => item.split(',')[0]));
         let ValorTotal = 0;
+        const pratos = {};
 
         itens.forEach(item => {
             const [nomeItem, quantidade] = item.split(',');
+            pratos[nomeItem] = quantidade;
 
             let invalido = 1;
             if (quantidade === '0') {
-                console.log(nomeItem + ' : Quantidade inválida!');
+                console.log(nomeItem + ': Quantidade inválida!');
                 invalido = 0;
             }else if (pedido[nomeItem]) {
                 const valorItem = cardapio.itens[nomeItem].valor * quantidade;
@@ -30,7 +32,7 @@ class CaixaDaLanchonete {
                     if (cardapio.itens[principal].extras && cardapio.itens[principal].extras[nomeItem]) {
                         const principalNoPedido = pedido[principal];
                         invalido = 0;
-                        if (principalNoPedido) {
+                        if (principalNoPedido && parseInt(pratos[principal][0])) {
                             const valorExtra = cardapio.itens[principal].extras[nomeItem].valor * quantidade;
                             console.log(nomeItem + ' (' + quantidade + 'x): R$ ' + valorExtra.toFixed(2).replace('.', ','));
                             ValorTotal += valorExtra;
