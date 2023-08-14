@@ -10,32 +10,36 @@ class CaixaDaLanchonete {
             return console.log("Não há itens no carrinho de compra!");
         }
 
-        const pedido = cardapio.verificar_itens(itens)
+        const pedido = cardapio.verificar_itens(itens.map(item => item.split(',')[0]));
         let ValorTotal = 0;
 
         itens.forEach(item => {
+            const [nomeItem, quantidade] = item.split(',');
+
             let invalido = 1;
-            if (pedido[item]) {
-                console.log(item + ': R$ ' + cardapio.itens[item].valor.toFixed(2).replace('.', ','));
-                ValorTotal += cardapio.itens[item].valor;
+            if (pedido[nomeItem]) {
+                const valorItem = cardapio.itens[nomeItem].valor * quantidade;
+                console.log(nomeItem + ' (' + quantidade + 'x): R$ ' + valorItem.toFixed(2).replace('.', ','));
+                ValorTotal += valorItem;
                 invalido = 0;
             } else {
                 for (const principal in cardapio.itens) {
-                    if (cardapio.itens[principal].extras && cardapio.itens[principal].extras[item]) {
+                    if (cardapio.itens[principal].extras && cardapio.itens[principal].extras[nomeItem]) {
                         const principalNoPedido = pedido[principal];
                         invalido = 0;
                         if (principalNoPedido) {
-                            console.log(item + ': R$ ' + cardapio.itens[principal].extras[item].valor.toFixed(2).replace('.', ','));
-                            ValorTotal += cardapio.itens[principal].extras[item].valor;
+                            const valorExtra = cardapio.itens[principal].extras[nomeItem].valor * quantidade;
+                            console.log(nomeItem + ' (' + quantidade + 'x): R$ ' + valorExtra.toFixed(2).replace('.', ','));
+                            ValorTotal += valorExtra;
                             break;
                         } else {
-                            console.log(item + ": Item extra não pode ser pedido sem o principal");
+                            console.log(nomeItem + ": Item extra não pode ser pedido sem o principal");
                         }
                     }
                 }
             }
             if (invalido){
-                console.log(item + ": Item inválido!");
+                console.log(nomeItem + ": Item inválido!");
             }
         });
 

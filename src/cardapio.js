@@ -44,9 +44,9 @@ export class Cardapio {
         return this.itens[item];
     }
 
-    verificar_itens(pedido) {
+    verificar_itens(pedidos) {
         const resultados = {};
-        pedido.forEach(pedido => {
+        pedidos.forEach(pedido => {
             resultados[pedido] = this.itens.hasOwnProperty(pedido);
         });
         return resultados;
