@@ -1,4 +1,4 @@
-function pagamento(metodoDePagamento, ValorTotal){
+export function Pagamento(metodoDePagamento, ValorTotal){
     if(metodoDePagamento === 'dinheiro'){
         ValorTotal -= ValorTotal*0.05;
         return 'R$ ' + ValorTotal.toFixed(2).replace('.',',');

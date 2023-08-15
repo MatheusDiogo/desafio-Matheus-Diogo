@@ -39,10 +39,6 @@ export class Cardapio {
             }
         };
     }
-    
-    getItem(item) {
-        return this.itens[item];
-    }
 
     verificar_itens(pedidos) {
         const resultados = {};

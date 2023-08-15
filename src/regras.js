@@ -1,6 +1,4 @@
-import { Cardapio } from "./cardapio.js";
-
-function regras(itens){
+export function regras(itens, cardapio){
     const pedido = cardapio.verificar_itens(itens.map(item => item.split(',')[0]));
     const pratos = {};
     let ValorTotal = 0;
@@ -36,4 +34,5 @@ function regras(itens){
             throw new Error("Item inválido!");
         }
     });
+    return ValorTotal;
 }
