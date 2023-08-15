@@ -51,8 +51,10 @@ class CaixaDaLanchonete {
         }else if(metodoDePagamento === 'credito'){
             ValorTotal += ValorTotal*0.03;
             return 'R$ ' + ValorTotal.toFixed(2).replace('.',',');
-        }else{
+        }else if(metodoDePagamento === 'debito'){
             return 'R$ ' + ValorTotal.toFixed(2).replace('.',',');
+        }else{
+            return "Forma de pagamento inválida!";
         }
     }
 }

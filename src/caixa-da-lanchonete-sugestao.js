@@ -50,12 +50,14 @@ class CaixaDaLanchonete {
         
         if(metodoDePagamento === 'dinheiro'){
             ValorTotal -= ValorTotal*0.05;
-            return console.log('Total: R$ ' + ValorTotal.toFixed(2).replace('.',','));
+            return 'R$ ' + ValorTotal.toFixed(2).replace('.',',');
         }else if(metodoDePagamento === 'credito'){
             ValorTotal += ValorTotal*0.03;
-            return console.log('Total: R$ ' + ValorTotal.toFixed(2).replace('.',','));
+            return 'R$ ' + ValorTotal.toFixed(2).replace('.',',');
+        }else if(metodoDePagamento === 'debito'){
+            return 'R$ ' + ValorTotal.toFixed(2).replace('.',',');
         }else{
-            return console.log('Total: R$ ' + ValorTotal.toFixed(2).replace('.',','));
+            return "Forma de pagamento inválida!";
         }
     }
 }
